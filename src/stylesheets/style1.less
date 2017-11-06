@@ -1,5 +1,45 @@
-/*Attribute Styles*/
+        /*variables, mixins, etc*/
 
-/*Class Styles*/
+        @bodyTextColor : #FCFBE3;
+        @backgroundColor: #293134;
+        @highlightColor: #93C763;
+        @redColor: #5F0D0A;
+        @floatDivColor : rgba(0, 0, 0, 0.4);
+        /*stylez, with a z */
 
-/*ID Styles*/
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('../imgs/bridge3.jpg');
+            .contentContainer {
+                color: @highlightColor;
+                background-color: @floatDivColor;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                width: 70%;
+                margin-top: 0;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 60px;
+                padding-bottom: 80px;
+                h1 {
+                    text-align: center;
+                }
+                .formContainer {
+                    background-color: @floatDivColor;
+                    width: 20%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding: 15px;
+                    .formElements {
+                        padding: 5px;
+                        margin: 5px;
+                    }
+                    .formButton {
+                        border: none;
+                        color: @bodyTextColor;
+                        background-color: @redColor;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }

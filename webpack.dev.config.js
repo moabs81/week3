@@ -4,13 +4,17 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'cheap-eval-source-map',
-    entry: './index.js',
+    entry: [
+        './index.js'
+    ],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'devBundle.js'
     },
     plugins: [
-        new htmlWebpackPlugin({ template: './src/views/index.html' }),
+        new htmlWebpackPlugin({
+            template: './src/views/index.html'
+        }),
         new webpack.ProvidePlugin({
             'window.jQuery': 'jQuery',
             'window.$': 'jQuery',
@@ -21,7 +25,16 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.js$/,
-                use: { loader: 'babel-loader' }
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.(jpg|jpeg|png|svg)$/,
+                use: {
+                    loader: 'file-loader'
+                },
+                include: path.join(__dirname, 'src/imgs/')
             },
             {
                 test: /\.less$/,
@@ -38,5 +51,17 @@ module.exports = {
                 }]
             }
         ]
+    },
+    devServer: {
+        proxy: {
+            '/api/**': {
+                target: 'http://[::1]:4000',
+                /*pathRewrite: {
+                    '^/api': ''
+                },*/
+                secure: false,
+                changeOrigin: true
+            }
+        }
     }
 }
